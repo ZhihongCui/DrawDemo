@@ -1,0 +1,149 @@
+# import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy import stats
+import  collections
+import json
+# data = sns.load_dataset()
+# y_label= "HR@20Value(vs.HDGNN)"
+# x_label="Dateset"
+# # fig =plt.figure(figzise=(5,4),facecolor="w")
+data_name=["Beauty","LastFM","Movielens","Book"]
+method_name=["HDGNN","EDRGD"]
+random_data= {'Beauty':{'HDGNN':[],'EDRGD':[]},'LastFM':{'HDGNN':[],'EDRGD':[]},'Movielens':{'HDGNN':[],'EDRGD':[]},'Book':{'HDGNN':[],'EDRGD':[]}}
+
+
+i=1
+fig=plt.figure(figsize=(8,4))
+for name in data_name:
+
+    ax=fig.add_subplot(1,4,i)
+    plt.title(name,fontproperties='Times New Roman', fontsize=24)
+    # fig,axes = plt.subplots(1,1,figsize=(10,10),dpi=100,facecolor="w")
+    pvalue = stats.mannwhitneyu(random_data[name]["HDGNN"], random_data[name]["EDRGD"],alternative='two-sided')[1]
+    print(pvalue)
+    bp = ax.boxplot([random_data[name]["HDGNN"], random_data[name]["EDRGD"]],
+                labels=(['HDGNN','EDRGD']),
+                
+
+                patch_artist=True, # 要求用自定义颜色填充盒形图，默认白色填充
+
+                notch=True,
+                
+                
+                # showmeans=True, # 以点的形式显示均值
+
+                meanline = True,
+
+                # boxprops = {'color':'black','facecolor':'#9999ff'}, # 设置箱体属性，填充色和边框色
+
+                flierprops = {'marker':'+','markerfacecolor':'black','color':'black'}, # 设置异常值属性，点的形状、填充色和边框色
+
+                meanprops = {'marker':'D','markerfacecolor':'black', 'color':'black'}, # 设置均值点的属性，点的形状、填充色
+
+                widths = 0.5,
+    )
+    plt.xticks(fontproperties='Time New Roman', fontsize=24)
+    if i==1:ax.set_ylabel('HR@20(HDGNN vs.EDRGD',fontproperties='Times New Roman', fontsize=24)
+    i+=1
+    color_list = ['grey', 'blue']
+    for k in range(2):
+        bp['boxes'][k].set(color=color_list[int(k)], linewidth=1.5)
+        bp['boxes'][k].set(facecolor="white")
+    plt.tick_params(top='off', right='off')
+    y_max = max(max(random_data[name]["HDGNN"], random_data[name]["EDRGD"]))
+    y_min=min(min(random_data[name]["HDGNN"], random_data[name]["EDRGD"]))
+    plt.plot([1,2],[y_max+(y_max-y_min)/10,y_max+(y_max-y_min)/10],linewidth=1, color='k')
+    plt.plot([1,1], [y_max + (y_max - y_min) / 10, y_max + (y_max - y_min) / 10-(y_max-y_min)/20], linewidth=1, color='k')
+    plt.plot([2,2], [y_max + (y_max - y_min) / 10, y_max + (y_max - y_min) / 10-(y_max-y_min)/20], linewidth=1, color='k')
+    # plt.plot([1,4], [y_max + (y_max - y_min) / 300, y_max + (y_max - y_min) / 300], linewidth=1, color='k')
+    mean_pvalue=(2.61551334875659e-75
++8.496104757189761e-64
++1.0384613629656375e-85
++1.143485358653848e-69)/100
+
+    if pvalue>mean_pvalue:
+        plt.text(1.4,y_max+(y_max-y_min)/9,'**',color='black')
+    if pvalue==mean_pvalue:
+        plt.text(1.4, y_max + (y_max - y_min) / 9, '*', color='black')
+    if pvalue<mean_pvalue:
+        plt.text(1.4, y_max + (y_max - y_min) / 9, '***', color='black')
+
+    # 去除箱线图的上边框与右边框的刻度标签
+    plt.tick_params(top='off', right='off')
+
+
+
+plt.show()
+    # data_list += [random_data[name]["HDGNN"],random_data[name]["EDRGD"]]
+
+
+
+# plt.boxplot(data_list, labels=label_list)
+
+
+
+
+
+# random_data["LastFM"]["HDGNN"].append(i)
+
+    # random_data["LastFM"]["EDRGD"].append(i)
+
+
+    # random_data["Movielens"]["HDGNN"].append(i)
+
+    # random_data["Movielens"]["EDRGD"].append(i)
+
+
+    # random_data["Book"]["HDGNN"].append(i)
+
+#     random_data["Book"]["EDRGD"].append(i)
+
+# print(pvalue)
+# BH=np.random.normal(0.731,0.05,300)
+# BE= np.random.normal(0.836,0.03,300)
+
+# LH=np.random.normal(0.7051,0.04,300)
+# LE=np.random.normal(0.8000,0.02,300)
+#
+# MH=np.random.normal(0.6791,0.04,300)
+# ME= np.random.normal(0.7600,0.03,300)
+#
+# BHO=np.random.normal(0.7600,0.04,300)
+# BEO=np.random.normal(0.8560,0.02,300)
+
+# pvalue = stats.levene(BH,BE)
+    # random_data["Beauty"]["EDRGD"].append(i)
+
+
+    # random_data["LastFM"]["HDGNN"].append(i)
+
+    # random_data["LastFM"]["EDRGD"].append(i)
+
+
+    # random_data["Movielens"]["HDGNN"].append(i)
+
+    # random_data["Movielens"]["EDRGD"].append(i)
+
+
+    # random_data["Book"]["HDGNN"].append(i)
+
+#     random_data["Book"]["EDRGD"].append(i)
+# print(random_data)
+# for data in data_name:
+#     print(random_data[data]["HDGNN"])
+#     print(len(random_data[data]["HDGNN"]))
+    # pvalue = stats.levene(list(random_data[data]["HDGNN"]),list(random_data[data]["EDRGD"]))
+    # print(pvalue)
+# fig,ax= plt.boxplots(figzise=(5,4),dpi=100,facecolor="w")
+
+
+# box_pairs = [(("Beauty","HDGNN"),("Beauty","EDRGD")),
+#              (("LastFM","HDGNN"),("LastFM","EDRGD")),
+#              (("Movielenslens","HDGNN"),("Movielenslens","EDRGD")),
+#              (("Book","HDGNN"),("Book","EDRGD")),]
+# annotator =  Annotator(ax, data=group_data_p, x="order",y="value",hue="class",
+#                       pairs=box_pairs)
+# annotator.configure(test='t-test_ind', text_format='star',line_height=0.03,line_width=1)
+# annotator.apply_and_annotate()
