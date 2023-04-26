@@ -12,8 +12,6 @@ import json
 data_name=["Beauty","LastFM","Movielens","Book"]
 method_name=["HDGNN","EDRGD"]
 random_data= {'Beauty':{'HDGNN':[],'EDRGD':[]},'LastFM':{'HDGNN':[],'EDRGD':[]},'Movielens':{'HDGNN':[],'EDRGD':[]},'Book':{'HDGNN':[],'EDRGD':[]}}
-
-
 i=1
 fig=plt.figure(figsize=(8,4))
 for name in data_name:
@@ -76,74 +74,4 @@ for name in data_name:
 
 
 plt.show()
-    # data_list += [random_data[name]["HDGNN"],random_data[name]["EDRGD"]]
-
-
-
-# plt.boxplot(data_list, labels=label_list)
-
-
-
-
-
-# random_data["LastFM"]["HDGNN"].append(i)
-
-    # random_data["LastFM"]["EDRGD"].append(i)
-
-
-    # random_data["Movielens"]["HDGNN"].append(i)
-
-    # random_data["Movielens"]["EDRGD"].append(i)
-
-
-    # random_data["Book"]["HDGNN"].append(i)
-
-#     random_data["Book"]["EDRGD"].append(i)
-
-# print(pvalue)
-# BH=np.random.normal(0.731,0.05,300)
-# BE= np.random.normal(0.836,0.03,300)
-
-# LH=np.random.normal(0.7051,0.04,300)
-# LE=np.random.normal(0.8000,0.02,300)
-#
-# MH=np.random.normal(0.6791,0.04,300)
-# ME= np.random.normal(0.7600,0.03,300)
-#
-# BHO=np.random.normal(0.7600,0.04,300)
-# BEO=np.random.normal(0.8560,0.02,300)
-
-# pvalue = stats.levene(BH,BE)
-    # random_data["Beauty"]["EDRGD"].append(i)
-
-
-    # random_data["LastFM"]["HDGNN"].append(i)
-
-    # random_data["LastFM"]["EDRGD"].append(i)
-
-
-    # random_data["Movielens"]["HDGNN"].append(i)
-
-    # random_data["Movielens"]["EDRGD"].append(i)
-
-
-    # random_data["Book"]["HDGNN"].append(i)
-
-#     random_data["Book"]["EDRGD"].append(i)
-# print(random_data)
-# for data in data_name:
-#     print(random_data[data]["HDGNN"])
-#     print(len(random_data[data]["HDGNN"]))
-    # pvalue = stats.levene(list(random_data[data]["HDGNN"]),list(random_data[data]["EDRGD"]))
-    # print(pvalue)
-# fig,ax= plt.boxplots(figzise=(5,4),dpi=100,facecolor="w")
-
-
-# box_pairs = [(("Beauty","HDGNN"),("Beauty","EDRGD")),
-#              (("LastFM","HDGNN"),("LastFM","EDRGD")),
-#              (("Movielenslens","HDGNN"),("Movielenslens","EDRGD")),
-#              (("Book","HDGNN"),("Book","EDRGD")),]
-# annotator =  Annotator(ax, data=group_data_p, x="order",y="value",hue="class",
-#                       pairs=box_pairs)
-# annotator.configure(test='t-test_ind', text_format='star',line_height=0.03,line_width=1)
-# annotator.apply_and_annotate()
+   
